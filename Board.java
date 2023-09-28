@@ -4,7 +4,7 @@ public class Board {
     int numCols = 10;
     int[] ships = new int[5]; //{2,3,3,4,5}
 
-    int[][] gameBoard = new int[numRows][numCols];
+    private int[][] gameBoard = new int[numRows][numCols];
 
     public void printBoard() {
         for(int r=0; r<numRows; ++r) {
@@ -13,6 +13,10 @@ public class Board {
             }
             System.out.println("");
         }
+    }
+
+    public void setBoard(int r, int c, int value) {
+        gameBoard[r][c] = value;
     }
 
 }
