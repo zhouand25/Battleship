@@ -15,8 +15,12 @@ public class Board {
         }
     }
 
-    public void setBoard(int r, int c, int value) {
+    public void setValue(int r, int c, int value) {
         gameBoard[r][c] = value;
+    }
+
+    public int getValue(int r, int c) {
+        return gameBoard[r][c];
     }
 
 }
