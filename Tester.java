@@ -1,9 +1,11 @@
 public class Tester {
     
     public static void main(String[] args) {
+        //g1 is player board
         Board g1 = new Board();
-        g1.setValue(0,0,1);
-        g1.printBoard();
+        //g2 is the computer's board
+        Board g2 = new Board();
+
     }
 
 }
