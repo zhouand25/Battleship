@@ -1,14 +1,20 @@
 import java.util.Scanner;
+
+//Board Class - contains not only the gameBoard but also crucial methods needed in the program such as (Generate) and (Manual Set)
 public class Board {
 
+    
   int numRows;
   int numCols;
   final int numCoords = 4; 
   int[][] ships;
   int numShips;
+  //Stores coordinates of ships
   int[][] shipCoords;
+  //The 2d Matrix which is basically the Game Board
   private int[][] gameBoard; 
-  
+
+  //Constructor of Class (Allows for adjust of dimensions based on the mode)
   public Board(int m) {
     if(m==1) {
       numRows = 10;
@@ -25,18 +31,19 @@ public class Board {
     shipCoords = new int[numShips][numCoords];
     gameBoard = new int[numRows][numCols];
   }
+  //Overload constructor for the guess object (The screen allowing the Player to guess and display hits and misses) 
   public Board(int a, int b) {
     gameBoard = new int[a][b];
     numRows = a;
     numCols = b;
-    //overload constructor for guessBaord
   }
+  //Default Constructor of Class
   public Board() {
     
   }
 
 
-
+  //Prints the 2d game board matrix (with indexes to help with coordinate target)
   public void printBoard() {
     String output="++ ";
     for(int i=0; i<numCols; ++i) {
@@ -54,28 +61,35 @@ public class Board {
     System.out.println(output);
   }
 
+  //setter method (2d game board)
   public void setValue(int col, int row, int value) {
     gameBoard[row][col] = value;
   }
+  //getter method (2d game board)
   public int getValue(int col, int row) {
     return gameBoard[row][col];
   }
+  //returns the entire 2d game board matrix
   public int[][] getBoard() {
     return gameBoard;
   }
 
+  //Random configuration of ships on grid during FAST MODE
   public void generate() {
+    //Loops through each ship and individually randomizes them one at a time
       for(int move=0; move<numShips; ++move) {
         int[] check = new int[numCoords];
         boolean valid = false;
+        //While Loop continues until a valid ship position is found
         while(valid==false) {
+          //Check is the array that contains the eventual positions of the randomized ships
           check = random(ships[move][0], ships[move][1]);
           if(check[0]!=-1) {
 
             for(int i=0; i<numCoords; ++i) {
               shipCoords[move][i]=check[i];
             }
-
+            //Fills the entire block of the game board so no overlap occurs
             fill(check[0], check[1], check[2], check[3]);
             valid = true;
           }
@@ -84,6 +98,7 @@ public class Board {
       }
   }
 
+  //Randomly determines the orientation of the ship (longest side downward, or rightward)
   private int[] random(int x, int y) {
     int orientI = (numCols-x+1) * (numRows-y+1);
     int orientII = (numCols-y+1) * (numRows-x+1);
@@ -100,21 +115,26 @@ public class Board {
     }
   }
 
+  //Actually randomizes the coordinates creates the 'seed' x and y coordinates 
   private int[] randPos(int len, int width) {
       int seedX = (int)(Math.random()*(numCols-len+1));
       int seedY = (int)(Math.random()*(numRows-width+1));
 
       if(verify(seedX, seedY, len, width)) {
+        //This branch shows that the randomization is successful
        int[] array1 = {seedX, seedY, seedX+len, seedY+width};  
         return array1;
       } else {
+        //This branch returns that the randomization has failed/has a collision
         int[] array2 =  {-1,-1,-1,-1};
         return array2;
       }
   }
 
+  //Verifies if a configuration of seedX, seedY with the proper dimensions does not have any overlap with any other ships on the game board
+  //(Keep in mind: The randomizaiton forces the ship to stay on the board, so that type of error can be neglected)
   private boolean verify(int x, int y, int l, int w) {
-
+  //Returns true if a ship in these coordinates and dimensions can land validly in the grid
     for(int i=x; i<x+l; ++i) {
       for(int j=y; j<y+w; ++j) {
         if(gameBoard[j][i]==1) {
@@ -124,7 +144,7 @@ public class Board {
     }
   return true;
   }
-  
+  //Fills an entire rectangular section of the game board full of 1s 
   private void fill(int x1, int y1, int x2, int y2) {
     for(int i=x1; i<x2; ++i) {
       for(int j=y1; j<y2; ++j) {
@@ -133,10 +153,13 @@ public class Board {
     }
   }
 
+ //User placement of ships (Player 1)
  public void manualSet() {
  int valid = 0;
+  //Loops through ships and allows user to place ships one at a time
   for(int i=0; i<numShips; ++i) {
     while (valid!=1) {
+      //Try-Catch to eliminate errors in input
       try {
         System.out.println("Placement of Ship: "+ships[i][0]+" x "+ships[i][1]);
         Scanner coordinateX = new Scanner(System.in);
@@ -160,12 +183,14 @@ public class Board {
     valid = 0;
   }
 }  
+//Follow up method to manualSet
 private int secondary(int x, int y, int direction, int row) {
   boolean result;
 
   int finalX;
   int finalY;
 
+  //Changing finalX and finalY due to ship orientation
   if(direction==1) {
     finalX = x+ships[row][0];
     finalY = y+ships[row][1];
@@ -179,9 +204,9 @@ private int secondary(int x, int y, int direction, int row) {
       }
   }
   
-  //finalX and finalY are actually never reached
-  
+  //finalX and finalY are actually never reached (More are upperBounds)
     if((finalX > numCols) || (finalY > numRows)) {
+     //Error handling in case placement is out of bounds
       System.out.println("Out of Bounds");
       return 0;
     }
