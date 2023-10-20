@@ -27,7 +27,12 @@ public class Board {
   }
   public Board(int a, int b) {
     gameBoard = new int[a][b];
+    numRows = a;
+    numCols = b;
     //overload constructor for guessBaord
+  }
+  public Board() {
+    
   }
 
 
@@ -37,7 +42,7 @@ public class Board {
     for(int i=0; i<numCols; ++i) {
       output+=i+" ";
     }
-    output+="\n"+"----------------------------------"+"\n";
+    output+="\n"+"----------------------------"+"\n";
   
       for(int r=0; r<numRows; ++r) {
         output+=r+"| ";
@@ -132,6 +137,7 @@ public class Board {
  int valid = 0;
   for(int i=0; i<numShips; ++i) {
     while (valid!=1) {
+      System.out.println("Placement of Ship: "+ships[i][0]+" x "+ships[i][1]);
       Scanner coordinateX = new Scanner(System.in);
       System.out.print("X Coordinate of ship: ");
       int x = coordinateX.nextInt();
@@ -160,14 +166,16 @@ private int secondary(int x, int y, int direction, int row) {
   if(direction==1) {
     finalX = x+ships[row][0];
     finalY = y+ships[row][1];
-  } 
-  if(direction==0) {
-    finalX = x+ships[row][1];
-    finalY = y+ships[row][0];
   } else {
-    System.out.println("Invalid Input");
-    return 0;
+      if(direction==0) {
+        finalX = x+ships[row][1];
+        finalY = y+ships[row][0];
+      } else {
+        System.out.println("Invalid Input");
+        return 0;
+      }
   }
+  
   //finalX and finalY are actually never reached
   
     if((finalX > numCols) || (finalY > numRows)) {
