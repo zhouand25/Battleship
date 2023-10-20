@@ -58,3 +58,29 @@ public class Board {
       return randPos(x,y);
     }
   }
+
+  private int[] randPos(int len, int width) {
+      int seedX = (int)(Math.random()*(numCols-len+1));
+      int seedY = (int)(Math.random()*(numRows-width+1));
+
+      if(verify(seedX, seedY, len, width)) {
+       int[] array1 = {seedX, seedY, seedX+len, seedY+width};  
+        return array1;
+      } else {
+        int[] array2 =  {-1,-1,-1,-1};
+        return array2;
+      }
+  }
+
+  private boolean verify(int x, int y, int l, int w) {
+
+    for(int i=x; i<x+l; ++i) {
+      for(int j=y; j<y+w; ++j) {
+        if(gameBoard[j][i]==1) {
+          return false;
+        }
+      }
+    }
+  return true;
+  }
+  
