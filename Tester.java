@@ -70,7 +70,10 @@ public static void main(String[] args) {
       
       guessBoard = new Board(10, 10);
       opBoard.printBoard();
+      System.out.println("PLAYER 1: Place your Ships");
       opBoard.manualSet();
+      System.out.println(m+"\n\n");
+      System.out.println("PLAYER 2: Guess");
     }
 
   
