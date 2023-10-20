@@ -14,6 +14,7 @@ public static void main(String[] args) {
   
     if(mode<=0) {
       if(mode==0) {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
         //Instructions for fast mode
         System.out.println("BATTLESHIP: FAST GAME INSTRUCTIONS: \n*Keep in mind, this is a variant of battleship and not exactly the original battleship game\n");  
         System.out.println("-Three ships composed of the dimensions (2 x 1), (3 x 1), (5 x 1) are randomly placed on an 8x8 board.\n");
@@ -23,15 +24,15 @@ public static void main(String[] args) {
         System.out.println("-A ship is destroyed when every one of the points it occupies on the grid are destroyed by “hits” / the user’s guesses.\n");
         System.out.println("-The games ends in your victory if you destroy all of the generated ships, strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
       }
-      
+
+      System.out.println("\n\n\n\n\n\n\n");
       guessBoard = new Board(8, 8);
-      System.out.println(guessBoard.getValue(0,0));
       opBoard.generate();
-      opBoard.printBoard();
+      opBoard.printBoard(); //Get rid of in final version
     }
     
   if(mode==1) {
-    System.out.println("\n\n\n\n\n");
+    System.out.println("\n\n\n\n\n\n\n\n");
       //Instructions for Regular Game Mode
       System.out.println("BATTLESHIP: REGULAR GAME INSTRUCTIONS \n\n-This game is a two player game, with one player setting up the puzzle/game, while the other person guesses.\n");
     System.out.println("Player 1 (The creator):\n");
@@ -45,6 +46,7 @@ public static void main(String[] args) {
     System.out.println("-A 'hit' will be returned (with a 1 displayed on your grid) will show the presence of the enemy ship at that point, while a “miss” will be returned (with a 2 on the grid) if the enemy ship is not present.\n");
     System.out.println("-A ship is destroyed when every one of the points it occupies on the grid are destroyed by 'hits' / the user’s guesses.\n");
     System.out.println("-The games ends in your victory if you destroy all of Player 1’s ships, strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
+    System.out.println("\n\n\n\n\n\n\n");
     //
       
       guessBoard = new Board(10, 10);
@@ -59,6 +61,7 @@ public static void main(String[] args) {
     int shipsRemaining = opBoard.numShips;
     boolean gameEnd=false;
      while(!gameEnd) {
+       
        System.out.println("-----------------------------------------------------");
         Scanner xCoordinate = new Scanner(System.in);
         System.out.print("X Coordinate of Guess: ");
@@ -67,6 +70,7 @@ public static void main(String[] args) {
         Scanner yCoordinate = new Scanner(System.in);
         System.out.print("Y Coordinate of Guess: ");
         int y = yCoordinate.nextInt();
+       
        
         //First verify that the guess is unique
         if(guessBoard.getValue(x,y)==0) {
