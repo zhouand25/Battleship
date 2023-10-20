@@ -211,9 +211,11 @@ private int secondary(int x, int y, int direction, int row) {
       return 0;
     }
 
+    //Use of the verification method
     result = verify(x, y, finalX-x, finalY-y);
 
     if(result) {
+      //Inputting the ship coordinates into the matrix
        shipCoords[row][0] = x;
        shipCoords[row][1] = y;
        shipCoords[row][2] = finalX;
@@ -222,10 +224,12 @@ private int secondary(int x, int y, int direction, int row) {
        fill(x, y, finalX, finalY);
        return 1;
     }
+  //If verification fails
   System.out.println("Collision with other ship");
   return 0;
 }
 
+//Built in method showing number of remaining ships (not destroyed by player)
 public int numRemaining(int[][] guess) {
   int numDestroyed=0;
   for(int i=0; i<numShips; ++i) {
