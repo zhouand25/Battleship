@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 public class Main {
 public static void main(String[] args) {
@@ -25,7 +24,7 @@ public static void main(String[] args) {
           if(myBoard.getValue(x,y)==1) {
             System.out.println("Hit");
             guessBoard.setValue(x, y, 1);
-            int rem = numRemaining(guessBoard);
+            int rem = myBoard.numRemaining(guessBoard);
 
             if(rem == shipsRemaining-1) {
               System.out.println("You destroyed a ship");
@@ -35,7 +34,7 @@ public static void main(String[] args) {
               gameEnd=true;
             }
           } else {
-           `System.out.println("Miss");
+            System.out.println("Miss");
             guessBoard.setValue(x, y, 2);
           }
           guessBoard.printBoard();
@@ -49,3 +48,4 @@ public static void main(String[] args) {
 
 }
 }
+
