@@ -20,6 +20,13 @@ public class Board {
       }
   }
 
+  public void setValue(int col, int row, int value) {
+    gameBoard[row][col] = value;
+  }
+  public int getValue(int col, int row) {
+    return gameBoard[row][col];
+  }
+
   public void generate() {
       for(int move=0; move<numShips; ++move) {
         int[] check = new int[numCoords];
@@ -33,7 +40,7 @@ public class Board {
               shipCoords[move][i]=check[i];
             }
 
-            setValue(check[0], check[1], check[2], check[3]);
+            fill(check[0], check[1], check[2], check[3]);
             valid = true;
           }
         }
@@ -83,7 +90,7 @@ public class Board {
   return true;
   }
   
-  private void setValue(int x1, int y1, int x2, int y2) {
+  private void fill(int x1, int y1, int x2, int y2) {
     for(int i=x1; i<x2; ++i) {
       for(int j=y1; j<y2; ++j) {
         gameBoard[j][i] = 1;
@@ -141,11 +148,30 @@ private int secondary(int x, int y, int direction, int row) {
        shipCoords[row][2] = finalX;
        shipCoords[row][3] = finalY;
 
-       setValue(x, y, finalX, finalY);
+       fill(x, y, finalX, finalY);
        return 1;
     }
   System.out.println("Collision with other ship");
   return 0;
 }
 
+public int numRemaining(int[][] guess) {
+  int numDestroyed=0;
+  for(int i=0; i<numShips; ++i) {
+    //x coordinates or cols
+    boolean clean = true;
+    for(int j=shipCoords[i][0]; j<shipCoords[i][2]; ++j) {
+      //y coordinates or rows
+      for(int k=shipCoords[i][1]; k<shipCoordsp[i][3]; ++k) {
+        if(guess[k][j]==0) {
+          clean = false;
+        }
+      }
+      if(clean) {
+        ++numDestroyed;
+      }
+    }
+  }
+  return numShips-numDestroyed;
 }
+
