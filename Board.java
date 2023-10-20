@@ -12,12 +12,20 @@ public class Board {
   private int[][] gameBoard = new int[numRows][numCols];
 
   public void printBoard() {
+    String output="++ ";
+    for(int i=0; i<numCols; ++i) {
+      output+=i+" ";
+    }
+    output+="\n"+"----------------------------------"+"\n";
+  
       for(int r=0; r<numRows; ++r) {
+        output+=r+"| ";
           for(int c=0; c<numCols; ++c) {
-              System.out.print(gameBoard[r][c]+" ");
+              output+=gameBoard[r][c]+" ";
           }
-          System.out.println("");
+          output+="\n";
       }
+    System.out.println(output);
   }
 
   public void setValue(int col, int row, int value) {
@@ -133,9 +141,13 @@ private int secondary(int x, int y, int direction, int row) {
   if(direction==1) {
     finalX = x+ships[row][0];
     finalY = y+ships[row][1];
-  } else {
+  } 
+  if(direction==0) {
     finalX = x+ships[row][1];
     finalY = y+ships[row][0];
+  } else {
+    System.out.println("Invalid Input");
+    return 0;
   }
   //finalX and finalY are actually never reached
   
