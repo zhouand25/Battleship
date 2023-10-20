@@ -3,23 +3,27 @@ public class Tester {
 public static void main(String[] args) {
 
     Scanner start = new Scanner(System.in);
-     System.out.print("Type 0 for fast mode (-1 to also skip instructions) or Type 1 to pick regular mode");
+     System.out.println("Type 0 for fast mode (-1 to also skip instructions) or Type 1 to pick regular mode");
      int mode = start.nextInt();
 
     Board opBoard = new Board(mode);
-    Board guessBoard = new Board();    
+    Board guessBoard = new Board(); 
+
   
     if(mode<=0) {
       if(mode==0) {
         //Instructions for fast mode
         System.out.println("");
       }
+      guessBoard = new Board(8, 8);
+      System.out.println(guessBoard.getValue(0,0));
       opBoard.generate();
       opBoard.printBoard();
     }
     if(mode==1) {
       System.out.println("Board Set-Up");
       System.out.println(" ");
+      guessBoard = new Board(10, 10);
       opBoard.printBoard();
       opBoard.manualSet();
     }
@@ -58,7 +62,7 @@ public static void main(String[] args) {
               gameEnd=true;
             }
           } else {
-            System.out.println("Miss");
+            System.out.println("\nMiss\n");
             guessBoard.setValue(x, y, 2);
           }
           guessBoard.printBoard();
