@@ -1,57 +1,42 @@
+import java.util.Scanner;
 public class Board {
-    
-    int numRows = 10;
-    int numCols = 10;
-    int[] ships = new int[5]; //{2,3,3,4,5}
-    final int numShips = ships.length;
-    //
 
-    private int[][] gameBoard = new int[numRows][numCols];
+  int numRows = 10;
+  int numCols = 10;
+  int numCoords = 4;
+  //X skewed (aka. length by width)
+  int[][] ships = {{2,1}, {3,1}, {3,1}, {4,1}, {5,1}};
+  final int numShips = ships.length;
+  int[][] shipCoords = new int[numShips][numCoords];
 
-    public void printBoard() {
-        for(int r=0; r<numRows; ++r) {
-            for(int c=0; c<numCols; ++c) {
-                System.out.print(gameBoard[r][c]+" ");
-            }
-            System.out.println("");
-        }
-    }
+  private int[][] gameBoard = new int[numRows][numCols];
 
-    public void setValue(int r, int c, int value) {
-        gameBoard[r][c] = value;
-    }
+  public void printBoard() {
+      for(int r=0; r<numRows; ++r) {
+          for(int c=0; c<numCols; ++c) {
+              System.out.print(gameBoard[r][c]+" ");
+          }
+          System.out.println("");
+      }
+  }
 
-    public int getValue(int r, int c) {
-        return gameBoard[r][c];
-    }
+  public void generate() {
+      for(int move=0; move<numShips; ++move) {
+        int[] check = new int[numCoords];
+        boolean valid = false;
 
-    public void generate() {
-        for(int move=1; move<numShips+1; ++move) {
-            ships[move-1] = 
+        while(valid==false) {
+          check = random(ships[move][0], ships[move][1]);
+          if(check[0]!=-1) {
 
-        }
-    }
-
-    private int[] iterate(int size, int direc) {
-        if(direc==1 || direc == 2) {
-
-            
-        }
-    }
-
-    /* random stuff start
-    randPos(m1, m2);
-    randPos(m2, m1);
-    function randPos(int x, int y) {
-        int seedX = Math.floor(Math.random()*(cols-x+1));
-        int seedY = Math.floor(Math.random()*(rows-y+1));board[i][j]
-        
-        for(int i=seedX; i<seedX+x; ++i) {board[i][j]
-            for(int j=seedY; j<seedY+y; ++j) {board[i][j]
-                board[i][j]
+            for(int i=0; i<numCoords; ++i) {
+              shipCoords[move][i]=check[i];
             }
 
+            setValue(check[0], check[1], check[2], check[3]);
+            valid = true;
+          }
         }
-    }
-    */
-}
+
+      }
+  }
