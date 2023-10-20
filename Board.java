@@ -137,20 +137,23 @@ public class Board {
  int valid = 0;
   for(int i=0; i<numShips; ++i) {
     while (valid!=1) {
-      System.out.println("Placement of Ship: "+ships[i][0]+" x "+ships[i][1]);
-      Scanner coordinateX = new Scanner(System.in);
-      System.out.print("X Coordinate of ship: ");
-      int x = coordinateX.nextInt();
+      try {
+        System.out.println("Placement of Ship: "+ships[i][0]+" x "+ships[i][1]);
+        Scanner coordinateX = new Scanner(System.in);
+        System.out.print("Place X-Coordinate of Ship at: ");
+        int x = coordinateX.nextInt();
 
-      Scanner coordinateY = new Scanner(System.in);
-      System.out.print("Y Coordinate of ship: ");
-      int y = coordinateY.nextInt();
+        Scanner coordinateY = new Scanner(System.in);
+        System.out.print("Place Y-Coordinate of ship at: ");
+        int y = coordinateY.nextInt();
 
-      Scanner direc = new Scanner(System.in);
-      System.out.print("0 for down, 1 for right: ");
-      int direction = direc.nextInt();
-      valid = secondary(x, y, direction, i);
-      
+        Scanner direc = new Scanner(System.in);
+        System.out.print("0 for down, 1 for right: ");
+        int direction = direc.nextInt();
+        valid = secondary(x, y, direction, i);
+      } catch (Exception e) {
+        System.out.println("\nInvalid Input: make sure X and Y are positive integers");
+      }
       System.out.println("-----------------------------------------------------");
     } 
     printBoard();
