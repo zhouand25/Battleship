@@ -1,16 +1,32 @@
 import java.util.Scanner;
 public class Board {
 
-  int numRows = 10;
-  int numCols = 10;
-  int numCoords = 4;
-  //X skewed (aka. length by width)
-  int[][] ships = {{2,1}, {3,1}, {3,1}, {4,1}, {5,1}};
-  final int numShips = ships.length;
-  int[][] shipCoords = new int[numShips][numCoords];
+  int numRows;
+  int numCols;
+  final int numCoords = 4;
+  int[][] ships; 
+
 
   private int[][] gameBoard = new int[numRows][numCols];
 
+  public Board(int m) {
+    if(m==1) {
+      numRows = 10;
+      numCols = 10;
+      //X skewed (aka. length by width)
+      ships = {{2,1}, {3,1}, {3,1}, {4,1}, {5,1}};
+    }
+    if(m==0 || m==-1) {
+      numRows = 8;
+      numCols = 8;
+      //X skewed (aka. length by width)
+      ships={{2,1}, {3,1}, {5,1}};
+    }
+  }
+
+  int numShips = ships.length;
+  int[][] shipCoords = new int[numShips][numCoords];
+  
   public void printBoard() {
     String output="++ ";
     for(int i=0; i<numCols; ++i) {
@@ -196,4 +212,5 @@ public int numRemaining(int[][] guess) {
 }
 
 }
+
 
