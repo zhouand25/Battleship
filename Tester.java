@@ -115,12 +115,14 @@ public static void main(String[] args) {
               System.out.println("You destroyed a ship!");
               shipsRemaining = rem;
             }
+            //If all ships are gone than terminate game
             if(shipsRemaining==0) {
               System.out.println("----------------------------------");
               System.out.println("You Won! In " +numGuesses+" guesses!" );
               gameEnd=true;
             }
           } else {
+              //Handles misses
             System.out.println("\nMiss!\n");
             guessBoard.setValue(x, y, 2);
           }
