@@ -26,6 +26,9 @@ public class Board {
   public int getValue(int col, int row) {
     return gameBoard[row][col];
   }
+  public int[][] getBoard() {
+    return gameBoard;
+  }
 
   public void generate() {
       for(int move=0; move<numShips; ++move) {
@@ -114,7 +117,8 @@ public class Board {
       System.out.print("0 for down, 1 for right: ");
       int direction = direc.nextInt();
       valid = secondary(x, y, direction, i);
-
+      
+      System.out.println("-----------------------------------------------------");
     } 
     printBoard();
     valid = 0;
