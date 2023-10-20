@@ -162,7 +162,7 @@ public int numRemaining(int[][] guess) {
     boolean clean = true;
     for(int j=shipCoords[i][0]; j<shipCoords[i][2]; ++j) {
       //y coordinates or rows
-      for(int k=shipCoords[i][1]; k<shipCoordsp[i][3]; ++k) {
+      for(int k=shipCoords[i][1]; k<shipCoords[i][3]; ++k) {
         if(guess[k][j]==0) {
           clean = false;
         }
@@ -174,4 +174,7 @@ public int numRemaining(int[][] guess) {
   }
   return numShips-numDestroyed;
 }
+
+}
+
 
