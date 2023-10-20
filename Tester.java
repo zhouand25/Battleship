@@ -1,15 +1,18 @@
 import java.util.Scanner;
-public class Main {
+public class Tester {
 public static void main(String[] args) {
      Board myBoard = new Board();
      Board guessBoard = new Board();
+     System.out.println("Board Set-Up");
+     myBoard.printBoard();
      myBoard.manualSet();
 
      int numGuesses=0;
-     int shipsRemaining = myBoard.ships.length;
+     int shipsRemaining = myBoard.numShips;
 
      boolean gameEnd=false;
      while(!gameEnd) {
+       System.out.print("-----------------------------------------------------");
         Scanner xCoordinate = new Scanner(System.in);
         System.out.print("X Coordinate of Guess: ");
         int x = xCoordinate.nextInt();
@@ -24,7 +27,7 @@ public static void main(String[] args) {
           if(myBoard.getValue(x,y)==1) {
             System.out.println("Hit");
             guessBoard.setValue(x, y, 1);
-            int rem = myBoard.numRemaining(guessBoard);
+            int rem = myBoard.numRemaining(guessBoard.getBoard());
 
             if(rem == shipsRemaining-1) {
               System.out.println("You destroyed a ship");
@@ -38,8 +41,8 @@ public static void main(String[] args) {
             guessBoard.setValue(x, y, 2);
           }
           guessBoard.printBoard();
-          System.println("Number of guesses: "+numGuesses);
-          System.println("Ships remaining: "+shipsRemaining);
+          System.out.println("Number of guesses: "+numGuesses);
+          System.out.println("Ships remaining: "+shipsRemaining);
         } else {
           System.out.println("Already Guessed there");
         }
