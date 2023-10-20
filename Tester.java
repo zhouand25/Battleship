@@ -36,7 +36,7 @@ public static void main(String[] args) {
         System.out.println("-Three ships composed of the dimensions (2 x 1), (3 x 1), (5 x 1) are randomly placed on an 8x8 board.\n");
         System.out.println("-These ships completely lie on the board as contiguous blocks, are not diagonally placed, and do not share a point with one another.\n");
          System.out.println("-The games ends in your victory if you destroy all of the generated ships by guessing their locations.");
-        System.out.println("-Guess one little box of the grid, input the x-coordinate and y-coordinate of your guess, whether an enemy ship lies on that coordinate will be returned to you as feedback.\n");
+        System.out.println("-Guess one point of the grid (determined by X and y), input the x-coordinate and y-coordinate of your guess, whether an enemy ship lies on that coordinate will be returned to you as feedback.\n");
         System.out.println("-A 'hit' will be returned (with a 1 displayed on your grid) will show the presence of the enemy ship at that point, while a 'miss' will be returned (with a 2 on the grid) if the enemy ship is not present.\n");
         System.out.println("-A ship is destroyed when every one of the points it occupies on the grid are destroyed by “hits” / the user’s guesses.\n");
         System.out.println("Strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
