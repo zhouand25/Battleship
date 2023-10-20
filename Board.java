@@ -113,4 +113,39 @@ public class Board {
     valid = 0;
   }
 }  
+private int secondary(int x, int y, int direction, int row) {
+  boolean result;
+
+  int finalX;
+  int finalY;
+
+  if(direction==1) {
+    finalX = x+ships[row][0];
+    finalY = y+ships[row][1];
+  } else {
+    finalX = x+ships[row][1];
+    finalY = y+ships[row][0];
+  }
+  //finalX and finalY are actually never reached
+  
+    if((finalX > numCols) || (finalY > numRows)) {
+      System.out.println("Out of Bounds");
+      return 0;
+    }
+
+    result = verify(x, y, finalX-x, finalY-y);
+
+    if(result) {
+       shipCoords[row][0] = x;
+       shipCoords[row][1] = y;
+       shipCoords[row][2] = finalX;
+       shipCoords[row][3] = finalY;
+
+       setValue(x, y, finalX, finalY);
+       return 1;
+    }
+  System.out.println("Collision with other ship");
+  return 0;
+}
+
 }
