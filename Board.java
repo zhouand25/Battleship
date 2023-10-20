@@ -40,3 +40,21 @@ public class Board {
 
       }
   }
+
+
+  private int[] random(int x, int y) {
+    int orientI = (numCols-x+1) * (numRows-y+1);
+    int orientII = (numCols-y+1) * (numRows-x+10);
+    int numPositions = orientI + orientII;
+
+    //randomizes whether the orientation is to the right or down
+    int rand = (int)(Math.random()*numPositions) + 1;
+
+    if(rand>orientI) {
+      //Orient down
+      return randPos(y,x);
+    } else {
+      //Orient right
+      return randPos(x,y);
+    }
+  }
