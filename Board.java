@@ -3,30 +3,35 @@ public class Board {
 
   int numRows;
   int numCols;
-  final int numCoords = 4;
-  int[][] ships; 
-
-
-  private int[][] gameBoard = new int[numRows][numCols];
-
+  final int numCoords = 4; 
+  int[][] ships;
+  int numShips;
+  int[][] shipCoords;
+  private int[][] gameBoard; 
+  
   public Board(int m) {
     if(m==1) {
       numRows = 10;
       numCols = 10;
       //X skewed (aka. length by width)
-      ships = {{2,1}, {3,1}, {3,1}, {4,1}, {5,1}};
+      ships = new int[][] {{2,1}, {3,1}, {3,1}, {4,1}, {5,1}}; numShips = 5;
     }
     if(m==0 || m==-1) {
       numRows = 8;
       numCols = 8;
       //X skewed (aka. length by width)
-      ships={{2,1}, {3,1}, {5,1}};
+      ships = new int[][] {{2,1}, {3,1}, {5,1}}; numShips = 3;
     }
+    shipCoords = new int[numShips][numCoords];
+    gameBoard = new int[numRows][numCols];
+  }
+  public Board(int a, int b) {
+    gameBoard = new int[a][b];
+    //overload constructor for guessBaord
   }
 
-  int numShips = ships.length;
-  int[][] shipCoords = new int[numShips][numCoords];
-  
+
+
   public void printBoard() {
     String output="++ ";
     for(int i=0; i<numCols; ++i) {
@@ -58,7 +63,6 @@ public class Board {
       for(int move=0; move<numShips; ++move) {
         int[] check = new int[numCoords];
         boolean valid = false;
-
         while(valid==false) {
           check = random(ships[move][0], ships[move][1]);
           if(check[0]!=-1) {
@@ -77,12 +81,11 @@ public class Board {
 
   private int[] random(int x, int y) {
     int orientI = (numCols-x+1) * (numRows-y+1);
-    int orientII = (numCols-y+1) * (numRows-x+10);
+    int orientII = (numCols-y+1) * (numRows-x+1);
     int numPositions = orientI + orientII;
 
     //randomizes whether the orientation is to the right or down
     int rand = (int)(Math.random()*numPositions) + 1;
-
     if(rand>orientI) {
       //Orient down
       return randPos(y,x);
@@ -212,5 +215,3 @@ public int numRemaining(int[][] guess) {
 }
 
 }
-
-
