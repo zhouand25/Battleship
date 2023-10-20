@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Tester {
   
 public static void main(String[] args) {
-  String m = "\n\n\n\n\n\n\n\n\n";
+  String m = "\n\n\n\n\n\n";
   int mode;
     while (true) {
     try {
@@ -31,10 +31,12 @@ public static void main(String[] args) {
         System.out.println("BATTLESHIP: FAST GAME INSTRUCTIONS: \n*Keep in mind, this is a variant of battleship and not exactly the original battleship game\n");  
         System.out.println("-Three ships composed of the dimensions (2 x 1), (3 x 1), (5 x 1) are randomly placed on an 8x8 board.\n");
         System.out.println("-These ships completely lie on the board as contiguous blocks, are not diagonally placed, and do not share a point with one another.\n");
-        System.out.println("-Input the x-coordinate and y-coordinate of your guess, whether an enemy ship lies on that coordinate will be returned to you as feedback.\n");
+         System.out.println("-The games ends in your victory if you destroy all of the generated ships by guessing their locations.");
+        System.out.println("-Guess one little box of the grid, input the x-coordinate and y-coordinate of your guess, whether an enemy ship lies on that coordinate will be returned to you as feedback.\n");
         System.out.println("-A 'hit' will be returned (with a 1 displayed on your grid) will show the presence of the enemy ship at that point, while a 'miss' will be returned (with a 2 on the grid) if the enemy ship is not present.\n");
         System.out.println("-A ship is destroyed when every one of the points it occupies on the grid are destroyed by “hits” / the user’s guesses.\n");
-        System.out.println("-The games ends in your victory if you destroy all of the generated ships, strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
+        System.out.println("Strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
+       
       }
 
       System.out.println(m);
@@ -54,10 +56,11 @@ public static void main(String[] args) {
     System.out.println("-(Facing a ship a certain direction will ensure that the longer side points there, i.e the direction “right” for a ship (5x1) means that the ship will span 5 units right and only one unit down)\n");
     System.out.println("-Outwit and stall the guesser with hard-to-guess configurations and arrangements\n");
     System.out.println("Player 2 (The guesser):\n");
+    System.out.println("-The games ends in your victory if you destroy all of the ships set by Player 1 through guessing their locations.\n");
     System.out.println("-Input the x-coordinate and y-coordinate of your guess for the location of an enemy ship, whether a part of the enemy ship lies on that coordinate will be returned to you as feedback. \n");
     System.out.println("-A 'hit' will be returned (with a 1 displayed on your grid) will show the presence of the enemy ship at that point, while a “miss” will be returned (with a 2 on the grid) if the enemy ship is not present.\n");
     System.out.println("-A ship is destroyed when every one of the points it occupies on the grid are destroyed by 'hits' / the user’s guesses.\n");
-    System.out.println("-The games ends in your victory if you destroy all of Player 1’s ships, strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
+    System.out.println("-Strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
     System.out.println(m);
     //
       
