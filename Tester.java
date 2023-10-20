@@ -1,10 +1,13 @@
 import java.util.Scanner;
+//Pretty much the main body of the program, runs the menu and guessing mechanic
+
 public class Tester {
   
 public static void main(String[] args) {
   String m = "\n\n\n\n\n\n";
   int mode;
     while (true) {
+      //Error handling
     try {
       Scanner start = new Scanner(System.in);
       System.out.println("Welcome to Battleship!\n");
@@ -19,11 +22,12 @@ public static void main(String[] args) {
       System.out.println(m);  
     }
     }
-  
+
+  //Using constructors to initialize
     Board opBoard = new Board(mode);
     Board guessBoard = new Board(); 
 
-  
+  //FAST MODE
     if(mode<=0) {
       if(mode==0) {
         System.out.println(m);
@@ -36,7 +40,6 @@ public static void main(String[] args) {
         System.out.println("-A 'hit' will be returned (with a 1 displayed on your grid) will show the presence of the enemy ship at that point, while a 'miss' will be returned (with a 2 on the grid) if the enemy ship is not present.\n");
         System.out.println("-A ship is destroyed when every one of the points it occupies on the grid are destroyed by “hits” / the user’s guesses.\n");
         System.out.println("Strive to minimize the number of your guesses, the lower the number, the greater the performance!\n");
-       
       }
 
       System.out.println(m);
@@ -44,7 +47,8 @@ public static void main(String[] args) {
       opBoard.generate();
       opBoard.printBoard(); //Get rid of in final version
     }
-    
+  
+  //REGULAR MODE  
   if(mode==1) {
     System.out.println(m);
       //Instructions for Regular Game Mode
@@ -75,11 +79,13 @@ public static void main(String[] args) {
     int numGuesses=0;
     int shipsRemaining = opBoard.numShips;
     boolean gameEnd=false;
+  //Guessing loop until the game Ends
      while(!gameEnd) {
        System.out.println("-----------------------------------------------------");
 
        int x;
        int y;
+       //Error handling
         try {
           Scanner xCoordinate = new Scanner(System.in);
           System.out.print("X Coordinate of Guess: ");
@@ -93,17 +99,20 @@ public static void main(String[] args) {
           continue;
         }      
        
-            //First verify that the guess is unique
+        //More Error Handling
        try{
+         //Checks if the guess is redundant
           if(guessBoard.getValue(x,y)==0) {
             ++numGuesses;
+          
             if(opBoard.getValue(x,y)==1) {
-              System.out.println("Hit");
+              System.out.println("Hit!");
               guessBoard.setValue(x, y, 1);
               int rem = opBoard.numRemaining(guessBoard.getBoard());
 
+            //If one less ship after the guess exists, the guess must have destroyed a ship
             if(rem == shipsRemaining-1) {
-              System.out.println("You destroyed a ship");
+              System.out.println("You destroyed a ship!");
               shipsRemaining = rem;
             }
             if(shipsRemaining==0) {
@@ -112,7 +121,7 @@ public static void main(String[] args) {
               gameEnd=true;
             }
           } else {
-            System.out.println("\nMiss\n");
+            System.out.println("\nMiss!\n");
             guessBoard.setValue(x, y, 2);
           }
           guessBoard.printBoard();
