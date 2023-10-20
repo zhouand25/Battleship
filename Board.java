@@ -207,7 +207,7 @@ private int secondary(int x, int y, int direction, int row) {
   //finalX and finalY are actually never reached (More are upperBounds)
     if((finalX > numCols) || (finalY > numRows)) {
      //Error handling in case placement is out of bounds
-      System.out.println("Out of Bounds");
+      System.out.println("Out of Bounds: Make Sure that given the starting X and Y and the direction, the ship does not go off the screen");
       return 0;
     }
 
@@ -225,7 +225,7 @@ private int secondary(int x, int y, int direction, int row) {
        return 1;
     }
   //If verification fails
-  System.out.println("Collision with other ship");
+  System.out.println("Collision with other ship: Remember ships can not overlap");
   return 0;
 }
 
