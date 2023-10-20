@@ -152,7 +152,7 @@ public class Board {
         int direction = direc.nextInt();
         valid = secondary(x, y, direction, i);
       } catch (Exception e) {
-        System.out.println("\nInvalid Input: make sure X and Y are positive integers");
+        System.out.println("\nInvalid Input: make sure X and Y are positive integers and within the grid.");
       }
       System.out.println("-----------------------------------------------------");
     } 
