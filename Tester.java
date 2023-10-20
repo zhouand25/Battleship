@@ -3,7 +3,8 @@ public class Tester {
   
 public static void main(String[] args) {
   String m = "\n\n\n\n\n\n\n\n\n";
-    while (1) {
+  int mode;
+    while (true) {
     try {
       Scanner start = new Scanner(System.in);
       System.out.println("Welcome to Battleship!\n");
@@ -11,7 +12,7 @@ public static void main(String[] args) {
       System.out.println("Type 0 for fast mode (-1 to also skip instructions) or Type 1 to pick regular mode");
       System.out.println("INSTRUCTIONS for each game mode will be shown after mode selection :)");
 
-      int mode = start.nextInt();
+      mode = start.nextInt();
       break;
     } catch (Exception e) {
       System.out.println("Invalid Input: Please set mode equal to -1, 0, or, 1");
@@ -74,20 +75,23 @@ public static void main(String[] args) {
      while(!gameEnd) {
        System.out.println("-----------------------------------------------------");
 
+       int x;
+       int y;
         try {
           Scanner xCoordinate = new Scanner(System.in);
           System.out.print("X Coordinate of Guess: ");
-          int x = xCoordinate.nextInt();
+          x = xCoordinate.nextInt();
 
           Scanner yCoordinate = new Scanner(System.in);
           System.out.print("Y Coordinate of Guess: ");
-          int y = yCoordinate.nextInt();
+          y = yCoordinate.nextInt();
         } catch (Exception e) {
           System.out.println("\nInvalid Input: Make sure X and Y are positive integers");
           continue;
         }      
        
             //First verify that the guess is unique
+       try{
           if(guessBoard.getValue(x,y)==0) {
             ++numGuesses;
             if(opBoard.getValue(x,y)==1) {
@@ -114,7 +118,9 @@ public static void main(String[] args) {
         } else {
           System.out.println("Already Guessed there");
         }
-          
+       } catch (Exception e) {
+         System.out.println("Invalid Input: Make sure your X and Y are within the grid");
+       }     
      }
 
 }
