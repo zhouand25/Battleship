@@ -41,7 +41,6 @@ public class Board {
       }
   }
 
-
   private int[] random(int x, int y) {
     int orientI = (numCols-x+1) * (numRows-y+1);
     int orientII = (numCols-y+1) * (numRows-x+10);
@@ -83,8 +82,7 @@ public class Board {
     }
   return true;
   }
-
-
+  
   private void setValue(int x1, int y1, int x2, int y2) {
     for(int i=x1; i<x2; ++i) {
       for(int j=y1; j<y2; ++j) {
@@ -93,5 +91,26 @@ public class Board {
     }
   }
 
-}
+ public void manualSet() {
+ int valid = 0;
+  for(int i=0; i<numShips; ++i) {
+    while (valid!=1) {
+      Scanner coordinateX = new Scanner(System.in);
+      System.out.print("X Coordinate of ship: ");
+      int x = coordinateX.nextInt();
 
+      Scanner coordinateY = new Scanner(System.in);
+      System.out.print("Y Coordinate of ship: ");
+      int y = coordinateY.nextInt();
+
+      Scanner direc = new Scanner(System.in);
+      System.out.print("0 for down, 1 for right: ");
+      int direction = direc.nextInt();
+      valid = secondary(x, y, direction, i);
+
+    } 
+    printBoard();
+    valid = 0;
+  }
+}  
+}
