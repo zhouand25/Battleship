@@ -1,7 +1,7 @@
 import java.util.Scanner;
 //Pretty much the main body of the program, runs the menu and guessing mechanic
 
-public class Tester {
+public class Main {
   
 public static void main(String[] args) {
   String m = "\n\n\n\n\n\n";
@@ -75,7 +75,11 @@ public static void main(String[] args) {
       System.out.println(m);
       System.out.println(m);
       System.out.println(m);
-      System.out.println(m);
+      System.out.println("CONFIGURATION HAS BEEN SET");
+      System.out.println("CONFIGURATION HAS BEEN SET");
+      System.out.println("CONFIGURATION HAS BEEN SET\n");
+      System.out.println("PLAYER 2: Please do not scroll up.");
+      System.out.println(m)
       System.out.println("PLAYER 2: Guess");
     }
 
