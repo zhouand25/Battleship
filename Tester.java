@@ -1,7 +1,7 @@
 import java.util.Scanner;
 //Pretty much the main body of the program, runs the menu and guessing mechanic
 
-public class Main {
+public class Tester {
   
 public static void main(String[] args) {
   String m = "\n\n\n\n\n\n";
@@ -45,7 +45,7 @@ public static void main(String[] args) {
       System.out.println(m);
       guessBoard = new Board(8, 8);
       opBoard.generate();
-      opBoard.printBoard(); //Get rid of in final version
+      System.out.println("PLAYER 2: Guess the Ships\n\n");
     }
   
   //REGULAR MODE  
@@ -79,7 +79,7 @@ public static void main(String[] args) {
       System.out.println("CONFIGURATION HAS BEEN SET");
       System.out.println("CONFIGURATION HAS BEEN SET\n");
       System.out.println("PLAYER 2: Please do not scroll up.");
-      System.out.println(m)
+      System.out.println(m);
       System.out.println("PLAYER 2: Guess");
     }
 
@@ -128,8 +128,9 @@ public static void main(String[] args) {
             //If all ships are gone than terminate game
             if(shipsRemaining==0) {
               System.out.println("----------------------------------");
-              System.out.println("You Won! In " +numGuesses+" guesses!" );
+              System.out.println("\nYou Won! In " +numGuesses+" guesses!" );
               gameEnd=true;
+              continue;
             }
           } else {
               //Handles misses
