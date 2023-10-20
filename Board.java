@@ -234,18 +234,16 @@ public int numRemaining(int[][] guess) {
   int numDestroyed=0;
   for(int i=0; i<numShips; ++i) {
     
-    //x coordinates or cols
     boolean clean = true;
     
     for(int j=shipCoords[i][0]; j<shipCoords[i][2]; ++j) {
-      //y coordinates or rows
       for(int k=shipCoords[i][1]; k<shipCoords[i][3]; ++k) {
         if(guess[k][j]==0) {
           clean = false;
         }
       }
     }
-    
+    //if guess matrix matches with config matrix
     if(clean) {
       ++numDestroyed;
     }
