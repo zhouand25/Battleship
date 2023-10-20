@@ -176,5 +176,3 @@ public int numRemaining(int[][] guess) {
 }
 
 }
-
-
