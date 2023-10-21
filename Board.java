@@ -1,4 +1,12 @@
 import java.util.Scanner;
+/**
+ * Board.java
+ * @author Andrew Zhou
+ * @since 10/20/23
+ * @version 1.0.1
+ * The Board class contains not only the game board, which is the data structure storing the ship configuration and the guessing map in the game, but also other crucial methods revolving around the game board such as generate(), the configuration randomizer for 'Fast Game', and manualSet()-
+ * which allows for the user placement of ships on the board in the 'Regular Game'. 
+ */
 
 //Board Class - contains not only the gameBoard but also crucial methods needed in the program such as (Generate) and (Manual Set)
 public class Board {
@@ -161,6 +169,7 @@ public class Board {
     while (valid!=1) {
       //Try-Catch to eliminate errors in input
       try {
+		//Placement input
         System.out.println("Placement of Ship: "+ships[i][0]+" x "+ships[i][1]);
         Scanner coordinateX = new Scanner(System.in);
         System.out.print("Place X-Coordinate of Ship at: ");
@@ -175,7 +184,7 @@ public class Board {
         int direction = direc.nextInt();
         valid = secondary(x, y, direction, i);
       } catch (Exception e) {
-        System.out.println("\nInvalid Input: make sure X and Y are positive integers and within the grid.");
+        System.out.println("\nInvalid Input: make sure X and Y are positive integers and within the grid and that all input is in the correct format.");
       }
       System.out.println("-----------------------------------------------------");
     } 
@@ -235,7 +244,7 @@ public int numRemaining(int[][] guess) {
   for(int i=0; i<numShips; ++i) {
     
     boolean clean = true;
-    
+    //iterate to see if a ship given its coordinates completely matches with the guesses of the player
     for(int j=shipCoords[i][0]; j<shipCoords[i][2]; ++j) {
       for(int k=shipCoords[i][1]; k<shipCoords[i][3]; ++k) {
         if(guess[k][j]==0) {
